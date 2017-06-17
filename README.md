@@ -5,11 +5,9 @@
 
 Gradle
 
-  repositories {
-			maven {
-           url 'https://jitpack.io' 
-        }
-  }
+  	repositories { 
+   		 maven { url "https://jitpack.io" }
+	} 
   
 	dependencies {
 	        compile 'com.github.cc0819:BgButton:1.0.0'
