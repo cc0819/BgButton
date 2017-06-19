@@ -1,14 +1,15 @@
 package com.cheng.cc.library;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.widget.TextView;
+
 
 
 /**
@@ -20,100 +21,115 @@ import android.widget.TextView;
 
 public class BgButton extends TextView {
 
-    private ColorStateList BgColor;
-    private int cornerRadius;
-    private int cornerRadiusColor;
-    private int strokeWidth;
 
+    private int bgColor;
+    private int borderColor;
+    private int borderWidth;
 
-    public BgButton(Context context) {
-//        super(context);
-        this(context,null);
-    }
+    private float radius;
+    private float topLeftRadius;
+    private float topRightRadius;
+    private float bottomLeftRadius;
+    private float bottomRightRadius;
+
+    private int shapeType;
+
+    private Paint paintBg;
+    private Paint paintBorder;
+
+    private Path mPath;
+    private RectF mReactf = new RectF();
+    private float[] radiusf;
 
     public BgButton(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-        this(context,attrs,0);
+        super(context, attrs);
+        init(context, attrs);
     }
 
     public BgButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.BgButton);
+        init(context, attrs);
+    }
 
-         BgColor = typedArray.getColorStateList(R.styleable.BgButton_BgColor);
-        cornerRadius = typedArray.getDimensionPixelSize(R.styleable.BgButton_CornerRadius, 0);
-        cornerRadiusColor = typedArray.getColor(R.styleable.BgButton_CornerRadiusColor,getCurrentTextColor());
-        strokeWidth = typedArray.getDimensionPixelSize(R.styleable.BgButton_StrokeWidth,0);
+    private void init(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BgButton);
 
+        bgColor = typedArray.getColor(R.styleable.BgButton_bgColor, 0x00000000);
+        borderColor = typedArray.getColor(R.styleable.BgButton_cornerRadiusColor, 0x00000000);
+        borderWidth = typedArray.getDimensionPixelSize(R.styleable.BgButton_borderWidth, 1);
 
-//        float pressedRatio = typedArray.getFloat(R.styleable.BgButton_btnPressedRatio, 0.80f);
-//        ColorStateList solidColor = typedArray.getColorStateList(R.styleable.BgButton_btnSolidColor);
-//        int strokeDashWidth = typedArray.getDimensionPixelSize(R.styleable.BgButton_btnStrokeDashWidth, 0);
-//        int strokeDashGap = typedArray.getDimensionPixelSize(R.styleable.BgButton_btnStrokeDashGap, 0);
+        radius = typedArray.getDimension(R.styleable.BgButton_cornerRadius, 0);
+        topLeftRadius = typedArray.getDimension(R.styleable.BgButton_topLeftRadius, -1);
+        topRightRadius = typedArray.getDimension(R.styleable.BgButton_topRightRadius, -1);
+        bottomLeftRadius = typedArray.getDimension(R.styleable.BgButton_bottomLeftRadius, -1);
+        bottomRightRadius = typedArray.getDimension(R.styleable.BgButton_bottomRightRadius, -1);
+        shapeType = typedArray.getInt(R.styleable.BgButton_shapeType, GradientDrawable.RECTANGLE);
         typedArray.recycle();
-        drawBackground();
+        initDraw();
+    }
+
+
+    private void initDraw() {
+        topLeftRadius = topLeftRadius == -1 ? radius : topLeftRadius;
+        topRightRadius = topRightRadius == -1 ? radius : topRightRadius;
+        bottomLeftRadius = bottomLeftRadius == -1 ? radius : bottomLeftRadius;
+        bottomRightRadius = bottomRightRadius == -1 ? radius : bottomRightRadius;
+
+        if (borderWidth > 0 && borderColor != 0) {
+            paintBorder = new Paint();
+            paintBorder.setColor(borderColor);
+            paintBorder.setStyle(Paint.Style.STROKE);
+            paintBorder.setStrokeWidth(borderWidth);
+            paintBorder.setAntiAlias(true);
+        }
+        paintBg = new Paint();
+        paintBg.setColor(bgColor);
+        paintBg.setAntiAlias(true);
+        paintBg.setStyle(Paint.Style.FILL);
+
+        if (radius == 0 && shapeType == GradientDrawable.RECTANGLE) {
+            mPath = new Path();
+            radiusf = new float[]{topLeftRadius, topLeftRadius,topRightRadius,topRightRadius,
+                     bottomRightRadius,bottomRightRadius,bottomLeftRadius,bottomLeftRadius};
+        }
 
     }
 
-    private void drawBackground() {
-        setSingleLine(true);
-        setGravity(Gravity.CENTER);
-        BgDrawable drawable = new BgDrawable(false);
-        drawable.setCornerRadius(cornerRadius);
-        drawable.setStroke(strokeWidth, cornerRadiusColor, 0, 0);
-
-        drawable.setSolidColors(BgColor);
-        setBackground(drawable);
-
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mReactf.set(borderWidth, borderWidth, getWidth() - borderWidth, getHeight() - borderWidth);
+        if(mPath!=null){
+            mPath.addRoundRect(mReactf, radiusf, Path.Direction.CW);
+        }
     }
 
-    private static class BgDrawable extends GradientDrawable {
-        private boolean mIsStadium = false;
 
-        private ColorStateList mSolidColors;
-        private int mFillColor;
 
-        public BgDrawable(boolean isStadium) {
-            mIsStadium = isStadium;
-        }
 
-        public void setSolidColors(ColorStateList colors) {
-            mSolidColors = colors;
-            setColor(colors.getDefaultColor());
-        }
+    @Override
+    protected void onDraw(Canvas canvas) {
 
-        @Override
-        protected void onBoundsChange(Rect bounds) {
-            super.onBoundsChange(bounds);
-            if (mIsStadium) {
-                RectF rect = new RectF(getBounds());
-                setCornerRadius((rect.height() > rect.width() ? rect.width() : rect.height()) / 2);
-            }
-        }
-
-        @Override
-        public void setColor(int argb) {
-            mFillColor = argb;
-            super.setColor(argb);
-        }
-
-        @Override
-        protected boolean onStateChange(int[] stateSet) {
-            if (mSolidColors != null) {
-                final int newColor = mSolidColors.getColorForState(stateSet, 0);
-                if (mFillColor != newColor) {
-                    setColor(newColor);
-                    return true;
+        if (shapeType == GradientDrawable.RECTANGLE) {
+            if (radius == 0) {
+                canvas.drawPath(mPath, paintBg);
+            } else {
+                canvas.drawRoundRect(mReactf, radius, radius, paintBg);
+                if (paintBorder != null) {
+                    canvas.drawRoundRect(mReactf, radius, radius, paintBorder);
                 }
             }
-            return false;
+        } else {
+            canvas.drawOval(mReactf, paintBg);
+            if (paintBorder != null) {
+                canvas.drawOval(mReactf, paintBorder);
+            }
         }
 
-        @Override
-        public boolean isStateful() {
-            return super.isStateful() || (mSolidColors != null && mSolidColors.isStateful());
-        }
+        super.onDraw(canvas);
     }
+
+
 
 
 }

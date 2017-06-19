@@ -2,25 +2,25 @@
 <resources>
     <declare-styleable name="BgButton">
         <!--背景颜色-->
-        <attr name="BgColor" format="color"/>
-        <!--圆角半径-->
-        <attr name="CornerRadius" format="dimension" />
+        <attr name="bgColor" format="color|reference"/>
         <!--边框颜色-->
-        <attr name="CornerRadiusColor" format="color"/>
+        <attr name="cornerRadiusColor" format="color"/>
         <!-- 边框厚度 -->
-        <attr name="StrokeWidth" format="dimension"/>
+        <attr name="borderWidth" format="dimension"/>
+        <!--圆角半径-->
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="topLeftRadius" format="dimension"></attr>
+        <attr name="topRightRadius" format="dimension"></attr>
+        <attr name="bottomLeftRadius" format="dimension"></attr>
+        <attr name="bottomRightRadius" format="dimension"></attr>
 
-
-        <!-- 边框虚线长度 -->
-        <attr name="btnStrokeDashWidth" format="dimension"/>
-        <!-- 边框虚线间隙 -->
-        <attr name="btnStrokeDashGap" format="dimension"/>
-        <!-- 圆角半径，stadium 表示半径为 min(height,width) / 2-->
-        <attr name="btnCornerRadius" format="dimension">
-            <enum name="stadium" value="-1"/>
+        <attr name="shapeType" format="enum">
+            <enum name="rectangle" value="0"></enum>
+            <enum name="oval" value="1"></enum>
         </attr>
-        <!-- 自动计算按下(pressed)状态颜色的系数, 值为0时不自动计算 -->
-        <attr name="btnPressedRatio" format="float"/>
+
+
+
     </declare-styleable>
 
 </resources>
