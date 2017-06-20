@@ -13,11 +13,18 @@
         <attr name="topRightRadius" format="dimension"></attr>
         <attr name="bottomLeftRadius" format="dimension"></attr>
         <attr name="bottomRightRadius" format="dimension"></attr>
-
+        <!--形状-->
         <attr name="shapeType" format="enum">
             <enum name="rectangle" value="0"></enum>
             <enum name="oval" value="1"></enum>
         </attr>
+        <!-- 虚线长度 -->
+        <attr name="borderDashLength" format="dimension"/>
+        <!-- 虚线间隙小点长度 -->
+        <attr name="borderDashGapSmall" format="dimension"/>
+        <!-- 虚线间隙 -->
+        <attr name="borderDashGap" format="dimension"/>
+
 
 
 

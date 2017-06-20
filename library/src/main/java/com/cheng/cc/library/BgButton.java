@@ -3,13 +3,14 @@ package com.cheng.cc.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.graphics.RectF;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
 
 
 /**
@@ -20,7 +21,6 @@ import android.widget.TextView;
  */
 
 public class BgButton extends TextView {
-
 
     private int bgColor;
     private int borderColor;
@@ -33,6 +33,10 @@ public class BgButton extends TextView {
     private float bottomRightRadius;
 
     private int shapeType;
+
+    private float borderDashLength;
+    private float borderDashGapSmall;
+    private float borderDashGap;
 
     private Paint paintBg;
     private Paint paintBorder;
@@ -64,6 +68,10 @@ public class BgButton extends TextView {
         bottomLeftRadius = typedArray.getDimension(R.styleable.BgButton_bottomLeftRadius, -1);
         bottomRightRadius = typedArray.getDimension(R.styleable.BgButton_bottomRightRadius, -1);
         shapeType = typedArray.getInt(R.styleable.BgButton_shapeType, GradientDrawable.RECTANGLE);
+
+        borderDashLength = typedArray.getDimension(R.styleable.BgButton_borderDashLength, 5);
+        borderDashGapSmall = typedArray.getDimension(R.styleable.BgButton_borderDashLength, 0);
+        borderDashGap = typedArray.getDimension(R.styleable.BgButton_borderDashGap, 0);
         typedArray.recycle();
         initDraw();
     }
@@ -74,6 +82,7 @@ public class BgButton extends TextView {
         topRightRadius = topRightRadius == -1 ? radius : topRightRadius;
         bottomLeftRadius = bottomLeftRadius == -1 ? radius : bottomLeftRadius;
         bottomRightRadius = bottomRightRadius == -1 ? radius : bottomRightRadius;
+        borderDashGapSmall = borderDashGapSmall == 0 ? borderDashLength : borderDashGapSmall;
 
         if (borderWidth > 0 && borderColor != 0) {
             paintBorder = new Paint();
@@ -89,8 +98,8 @@ public class BgButton extends TextView {
 
         if (radius == 0 && shapeType == GradientDrawable.RECTANGLE) {
             mPath = new Path();
-            radiusf = new float[]{topLeftRadius, topLeftRadius,topRightRadius,topRightRadius,
-                     bottomRightRadius,bottomRightRadius,bottomLeftRadius,bottomLeftRadius};
+            radiusf = new float[]{topLeftRadius, topLeftRadius, topRightRadius, topRightRadius,
+                    bottomRightRadius, bottomRightRadius, bottomLeftRadius, bottomLeftRadius};
         }
 
     }
@@ -99,37 +108,42 @@ public class BgButton extends TextView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mReactf.set(borderWidth, borderWidth, getWidth() - borderWidth, getHeight() - borderWidth);
-        if(mPath!=null){
+        if (mPath != null) {
             mPath.addRoundRect(mReactf, radiusf, Path.Direction.CW);
         }
     }
 
 
-
-
     @Override
     protected void onDraw(Canvas canvas) {
-
         if (shapeType == GradientDrawable.RECTANGLE) {
             if (radius == 0) {
                 canvas.drawPath(mPath, paintBg);
             } else {
                 canvas.drawRoundRect(mReactf, radius, radius, paintBg);
                 if (paintBorder != null) {
+                    if (borderDashGap > 0) {
+                        PathEffect effects = new DashPathEffect(new float[]{borderDashGap,
+                                borderDashGap, borderDashGapSmall, borderDashGap}, borderDashLength);//设置虚线的间隔和点的长度
+                        paintBorder.setPathEffect(effects);
+                    }
                     canvas.drawRoundRect(mReactf, radius, radius, paintBorder);
                 }
             }
         } else {
             canvas.drawOval(mReactf, paintBg);
             if (paintBorder != null) {
+                if (borderDashGap > 0) {
+                    PathEffect effects = new DashPathEffect(new float[]{borderDashGap,
+                            borderDashGap, borderDashGapSmall, borderDashGap}, borderDashLength);//设置虚线的间隔和点的长度
+                    paintBorder.setPathEffect(effects);
+                }
                 canvas.drawOval(mReactf, paintBorder);
             }
         }
 
         super.onDraw(canvas);
     }
-
-
 
 
 }
