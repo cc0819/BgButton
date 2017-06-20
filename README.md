@@ -3,6 +3,8 @@
 
 [![](https://jitpack.io/v/cc0819/BgButton.svg)](https://jitpack.io/#cc0819/BgButton)
 
+![image](https://github.com/cc0819/BgButton/blob/master/art/show.png)
+
 Gradle
 
   	repositories { 
