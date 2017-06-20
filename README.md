@@ -17,11 +17,9 @@ Gradle
 
 Usage
 
-属性xml
+属性
 
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="BgButton">
+<declare-styleable name="BgButton">
         <!--背景颜色-->
         <attr name="bgColor" format="color|reference"/>
         <!--边框颜色-->
@@ -47,8 +45,6 @@ Usage
         <attr name="borderDashGap" format="dimension"/>
 
     </declare-styleable>
-
-</resources>
 
 
     
