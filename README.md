@@ -17,7 +17,40 @@ Gradle
 
 Usage
 
-属性XML
+属性
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BgButton">
+        <!--背景颜色-->
+        <attr name="bgColor" format="color|reference"/>
+        <!--边框颜色-->
+        <attr name="cornerRadiusColor" format="color"/>
+        <!-- 边框厚度 -->
+        <attr name="borderWidth" format="dimension"/>
+        <!--圆角半径-->
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="topLeftRadius" format="dimension"></attr>
+        <attr name="topRightRadius" format="dimension"></attr>
+        <attr name="bottomLeftRadius" format="dimension"></attr>
+        <attr name="bottomRightRadius" format="dimension"></attr>
+        <!--形状-->
+        <attr name="shapeType" format="enum">
+            <enum name="rectangle" value="0"></enum>
+            <enum name="oval" value="1"></enum>
+        </attr>
+        <!-- 虚线长度 -->
+        <attr name="borderDashLength" format="dimension"/>
+        <!-- 虚线间隙小点长度 -->
+        <attr name="borderDashGapSmall" format="dimension"/>
+        <!-- 虚线间隙 -->
+        <attr name="borderDashGap" format="dimension"/>
+
+    </declare-styleable>
+
+</resources>
+
+
     
 XML
 
