@@ -10,7 +10,7 @@ Gradle
 	} 
   
 	dependencies {
-	        compile 'com.github.cc0819:BgButton:1.0.0'
+	        compile 'com.github.cc0819:BgButton:1.1.0'
 	}
  
 
