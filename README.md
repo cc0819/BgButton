@@ -19,7 +19,7 @@ Usage
 
 属性
 
-<declare-styleable name="BgButton">
+    <declare-styleable name="BgButton">
         <!--背景颜色-->
         <attr name="bgColor" format="color|reference"/>
         <!--边框颜色-->

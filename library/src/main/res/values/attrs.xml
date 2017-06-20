@@ -25,9 +25,6 @@
         <!-- 虚线间隙 -->
         <attr name="borderDashGap" format="dimension"/>
 
-
-
-
     </declare-styleable>
 
 </resources>
