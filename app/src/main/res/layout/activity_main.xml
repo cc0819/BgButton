@@ -14,11 +14,97 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="哈哈哈哈哈"
+        app:cornerRadius="5dp"
+        app:borderWidth="2dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        />
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈"
         android:textColor="#f21"
-        app:borderDashGap="5dp"
-        app:borderDashGapSmall="2dp"
-        app:shapeType="oval"
+        app:bgColor="@color/colorPrimaryDark"
+        app:cornerRadius="5dp"
+        app:borderWidth="2dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        />
+
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈"
+        android:textColor="#f21"
+        app:bgColor="@color/colorPrimaryDark"
         app:cornerRadius="15dp"
-        app:cornerRadiusColor="@color/colorAccent" />
+        app:borderWidth="1dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        />
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈"
+        android:textColor="#f21"
+        app:borderWidth="1dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        app:shapeType="oval"/>
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈"
+        android:textColor="#f21"
+        app:borderWidth="1dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        app:shapeType="oval"/>
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈"
+        android:textColor="#f21"
+        app:borderWidth="1dp"
+        app:cornerRadius="5dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        app:borderDashLength="5dp"
+        app:borderDashGap="3dp"/>
+
+
+    <com.cheng.cc.library.BgButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="哈哈"
+        android:textColor="#f21"
+        app:borderWidth="1dp"
+        app:cornerRadiusColor="@color/colorAccent"
+        app:shapeType="oval"
+        app:borderDashLength="5dp"
+        app:borderDashGap="3dp"
+        app:borderDashGapSmall="1dp"/>
+
+
+
 
 </LinearLayout>

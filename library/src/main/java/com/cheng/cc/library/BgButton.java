@@ -70,7 +70,7 @@ public class BgButton extends TextView {
         shapeType = typedArray.getInt(R.styleable.BgButton_shapeType, GradientDrawable.RECTANGLE);
 
         borderDashLength = typedArray.getDimension(R.styleable.BgButton_borderDashLength, 5);
-        borderDashGapSmall = typedArray.getDimension(R.styleable.BgButton_borderDashLength, 0);
+        borderDashGapSmall = typedArray.getDimension(R.styleable.BgButton_borderDashGapSmall, 0);
         borderDashGap = typedArray.getDimension(R.styleable.BgButton_borderDashGap, 0);
         typedArray.recycle();
         initDraw();
@@ -123,8 +123,8 @@ public class BgButton extends TextView {
                 canvas.drawRoundRect(mReactf, radius, radius, paintBg);
                 if (paintBorder != null) {
                     if (borderDashGap > 0) {
-                        PathEffect effects = new DashPathEffect(new float[]{borderDashGap,
-                                borderDashGap, borderDashGapSmall, borderDashGap}, borderDashLength);//设置虚线的间隔和点的长度
+                        PathEffect effects = new DashPathEffect(new float[]{borderDashLength,
+                                borderDashLength, borderDashGapSmall, borderDashLength}, borderDashGap);//设置虚线的间隔和点的长度
                         paintBorder.setPathEffect(effects);
                     }
                     canvas.drawRoundRect(mReactf, radius, radius, paintBorder);
@@ -134,14 +134,13 @@ public class BgButton extends TextView {
             canvas.drawOval(mReactf, paintBg);
             if (paintBorder != null) {
                 if (borderDashGap > 0) {
-                    PathEffect effects = new DashPathEffect(new float[]{borderDashGap,
-                            borderDashGap, borderDashGapSmall, borderDashGap}, borderDashLength);//设置虚线的间隔和点的长度
+                    PathEffect effects = new DashPathEffect(new float[]{borderDashLength,
+                            borderDashLength, borderDashGapSmall, borderDashLength}, borderDashGap);
                     paintBorder.setPathEffect(effects);
                 }
                 canvas.drawOval(mReactf, paintBorder);
             }
         }
-
         super.onDraw(canvas);
     }
 
