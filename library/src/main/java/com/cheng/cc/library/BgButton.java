@@ -141,8 +141,103 @@ public class BgButton extends TextView {
                 canvas.drawOval(mReactf, paintBorder);
             }
         }
-        super.onDraw(canvas);
+        super.onDraw(canvas);//需要在自己绘制边框后绘制，否则会被覆盖掉
     }
 
 
+    public int getBgColor() {
+        return bgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
+    }
+
+    public int getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(int borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public int getBorderWidth() {
+        return borderWidth;
+    }
+
+    public void setBorderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public void setRadius(float radius) {
+        this.radius = radius;
+    }
+
+    public float getTopLeftRadius() {
+        return topLeftRadius;
+    }
+
+    public void setTopLeftRadius(float topLeftRadius) {
+        this.topLeftRadius = topLeftRadius;
+    }
+
+    public float getTopRightRadius() {
+        return topRightRadius;
+    }
+
+    public void setTopRightRadius(float topRightRadius) {
+        this.topRightRadius = topRightRadius;
+    }
+
+    public float getBottomLeftRadius() {
+        return bottomLeftRadius;
+    }
+
+    public void setBottomLeftRadius(float bottomLeftRadius) {
+        this.bottomLeftRadius = bottomLeftRadius;
+    }
+
+    public float getBottomRightRadius() {
+        return bottomRightRadius;
+    }
+
+    public void setBottomRightRadius(float bottomRightRadius) {
+        this.bottomRightRadius = bottomRightRadius;
+    }
+
+    public int getShapeType() {
+        return shapeType;
+    }
+
+    public void setShapeType(int shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    public float getBorderDashLength() {
+        return borderDashLength;
+    }
+
+    public void setBorderDashLength(float borderDashLength) {
+        this.borderDashLength = borderDashLength;
+    }
+
+    public float getBorderDashGapSmall() {
+        return borderDashGapSmall;
+    }
+
+    public void setBorderDashGapSmall(float borderDashGapSmall) {
+        this.borderDashGapSmall = borderDashGapSmall;
+    }
+
+    public float getBorderDashGap() {
+        return borderDashGap;
+    }
+
+    public void setBorderDashGap(float borderDashGap) {
+        this.borderDashGap = borderDashGap;
+    }
 }
