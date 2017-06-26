@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="BgButton">
         <!--背景颜色-->
-        <attr name="bgColor" format="color|reference"/>
+        <attr name="bgColor" format="color"/>
         <!--边框颜色-->
         <attr name="cornerRadiusColor" format="color"/>
         <!-- 边框厚度 -->
@@ -24,6 +24,18 @@
         <attr name="borderDashGapSmall" format="dimension"/>
         <!-- 虚线间隙 -->
         <attr name="borderDashGap" format="dimension"/>
+
+        <!-- 点击状态 -->
+        <attr name="isChick" format="boolean"/>
+
+        <!--点击后背景颜色-->
+        <attr name="clickedBgColor" format="color"/>
+        <!--点击后边框颜色-->
+        <attr name="clickedCornerRadiusColor" format="color"/>
+        <!--点击后字体颜色-->
+        <attr name="clickedTextColor" format="color"/>
+
+
 
     </declare-styleable>
 
