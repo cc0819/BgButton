@@ -5,6 +5,12 @@
 
 ![image](https://github.com/cc0819/BgButton/blob/master/art/gitshow.gif)
 
+V1.2.0
+增加了可以控制点击后的背景、文字、框颜色的设置
+
+
+
+
 Gradle
 
   	repositories { 
@@ -12,7 +18,7 @@ Gradle
 	} 
   
 	dependencies {
-	        compile 'com.github.cc0819:BgButton:1.1.0'
+	        compile 'com.github.cc0819:BgButton:1.2.0'
 	}
  
 
