@@ -46,6 +46,18 @@ Usage
         <!-- 虚线间隙 -->
         <attr name="borderDashGap" format="dimension"/>
 
+        <!-- 点击状态 -->
+         <attr name="isChick" format="boolean"/>
+
+         <!--点击后背景颜色-->
+         <attr name="clickedBgColor" format="color"/>
+         <!--点击后边框颜色-->
+         <attr name="clickedCornerRadiusColor" format="color"/>
+         <!--点击后字体颜色-->
+          <attr name="clickedTextColor" format="color"/>
+
+
+
     </declare-styleable>
 
 
@@ -67,19 +79,24 @@ XML
         />
 
 
-    <com.cheng.cc.library.BgButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:text="哈哈哈哈哈"
-        android:textColor="#f21"
-        app:bgColor="@color/colorPrimaryDark"
-        app:cornerRadius="15dp"
-        app:borderWidth="1dp"
-        app:cornerRadiusColor="@color/colorAccent"
-        />
+     <com.cheng.cc.library.BgButton
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="10dp"
+           android:padding="10dp"
+           android:text="哈哈哈哈哈"
+           android:textColor="#f21"
+           app:bgColor="@color/colorPrimaryDark"
+           app:cornerRadius="5dp"
+           app:borderWidth="2dp"
+           app:cornerRadiusColor="@color/colorAccent"
+
+           app:clickedBgColor="@color/green"
+           app:clickedCornerRadiusColor="@color/yellow"
+           app:clickedTextColor="@color/purple"
+           />
+
 
     <com.cheng.cc.library.BgButton
         android:layout_width="wrap_content"
